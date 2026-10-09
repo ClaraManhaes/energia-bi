@@ -205,7 +205,7 @@ with aba3:
   st.plotly_chart(fig_temp, use_container_width=True)
 
 # ----------------------------------------------------------------------------
-# ABA 4: Relatório de Insights e Notas Executivas (NOVO)
+# ABA 4: Relatório de Insights e Notas Executivas (Texto em Preto)
 # ----------------------------------------------------------------------------
 with aba4:
   st.subheader("Relatório Executivo e Notas de Inteligência de Mercado")
@@ -231,7 +231,6 @@ with aba4:
     <p>Ao avaliar o comportamento de custos entre o período passado (janeiro a outubro de 2025) e o ano corrente (2026), observa-se uma pressão inflacionária tarifária média de aproximadamente <b>+8%</b> no mercado cativo regulado. Em contrapartida, a projeção de migração para o Mercado Livre (ACL) demonstra um potencial de economia líquida superior a <b>25%</b> sobre a componente de energia, blindando o caixa da empresa contra a volatilidade das bandeiras tarifárias.</p>
   </div>
   """, unsafe_allow_html=True)
-
 # ----------------------------------------------------------------------------
 # ABA 5: Documentação Técnica (README para o GitHub)
 # ----------------------------------------------------------------------------
