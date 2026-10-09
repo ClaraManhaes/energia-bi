@@ -9,7 +9,7 @@ st.set_page_config(
 )
 
 # Título e Introdução
-st.title("⚡ Análise Comparativa: Mercado Captivo vs. Mercado Livre de Energia")
+st.title(" Análise Comparativa: Mercado Captivo vs. Mercado Livre de Energia")
 st.markdown(
     "Painel de inteligência de custos e opções econômicas para migração e gestão de portfólio no ACL."
 )
@@ -17,7 +17,7 @@ st.markdown(
 # ----------------------------------------------------------------------------
 # Passo 1: Barra Lateral para Parâmetros de Simulação
 # ------------------------------------------------------------
-st.sidebar.header("📊 Parâmetros de Simulação")
+st.sidebar.header("Parâmetros de Simulação")
 
 consumo_medio_mwh = st.sidebar.slider(
     "Consumo Médio Mensal (MWh)", min_value=50, max_value=5000, value=500, step=50
