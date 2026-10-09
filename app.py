@@ -1,13 +1,15 @@
-from datetime import datetime, timedelta
-import pandas as pd
-import plotly.express as px
 import streamlit as st
 
-# Configuração da página (Layout executivo)
+# Configuração da página (DEVE SER SEMPRE A PRIMEIRA LINHA EXECUTÁVEL)
 st.set_page_config(
     page_title="Lux | Análise de Viabilidade - Mercado Livre de Energia",
-    page_layout="wide",
+    layout="wide",
 )
+
+from datetime import datetime, timedelta
+import numpy as np
+import pandas as pd
+import plotly.express as px
 
 # Estilização limpa e corporativa via CSS
 st.markdown(
@@ -24,41 +26,34 @@ st.markdown(
 # Cabeçalho Institucional
 st.title("Análise de Viabilidade Econômica | Mercado Livre de Energia")
 st.markdown(
-    "Painel de monitoramento diário, comparativo YoY (2025 vs 2026) e otimização de portfólio corporativo."
+    "Painel de monitoramento diário, comparativo YoY (2025 vs 2026) e otimização"
+    " de portfólio corporativo."
 )
 st.write("")
 
 # ----------------------------------------------------------------------------
 # Geração Automática de Base de Dados Diária (Histórico e Atual)
-# ------------------------------------------------------------
+# ----------------------------------------------------------------------------
 
 
 @st.cache_data
 def gerar_dados_diarios():
-  # Datas de referência
   hoje_2026 = pd.to_datetime("2026-10-09")
   hoje_2025 = pd.to_datetime("2025-10-09")
 
-  # Gerar série de 60 dias para trás para capturar tendências diárias
   datas_2026 = pd.date_range(end=hoje_2026, periods=60, freq="D")
   datas_2025 = pd.date_range(end=hoje_2025, periods=60, freq="D")
 
   registros = []
-
-  # Simulando comportamento diário de consumo e preços do PLD/ACL
-  import numpy as np
-
   np.random.seed(42)
 
   for d26, d25 in zip(datas_2026, datas_2025):
-    # Dados de 2026
-    consumo_base_26 = np.random.uniform(15.0, 25.0)  # MWh/dia
+    consumo_base_26 = np.random.uniform(15.0, 25.0)
     custo_captivo_26 = consumo_base_26 * 450
     custo_acl_26 = consumo_base_26 * 320
 
-    # Dados de 2025 (Ano anterior - YoY)
     consumo_base_25 = consumo_base_26 * np.random.uniform(0.92, 0.98)
-    custo_captivo_25 = consumo_base_25 * 420  # tarifa ligeiramente menor em 2025
+    custo_captivo_25 = consumo_base_25 * 420
     custo_acl_25 = consumo_base_25 * 300
 
     registros.append({
@@ -111,10 +106,9 @@ with aba1:
       " dia anterior (D-1) e o mesmo período do ano anterior (09/10/2025)."
   )
 
-  # Dados do dia de hoje (última linha) e anteontem (penúltima)
   hoje_dados = df_diario.iloc[-1]
   ontem_dados = df_diario.iloc[-2]
-  ano_passado_dados = df_diario.iloc[-1]  # Referência equivalente em 2025
+  ano_passado_dados = df_diario.iloc[-1]
 
   col1, col2, col3, col4 = st.columns(4)
 
@@ -164,7 +158,6 @@ with aba1:
   st.markdown("---")
   st.subheader("Evolução Diária do Custo: Captivo vs. Mercado Livre (2026)")
 
-  # Gráfico de linha temporal diária recente
   fig_diario = px.line(
       df_diario,
       x="Data_2026",
@@ -273,4 +266,3 @@ with aba3:
       use_container_width=True,
       hide_index=True,
   )
-  
