@@ -11,14 +11,13 @@ import numpy as np
 import pandas as pd
 import plotly.express as px
 
-# Estilização limpa e corporativa via CSS
+# Estilização limpa e corporativa via CSS global
 st.markdown(
     """
     <style>
         .block-container { padding-top: 2rem; }
-        h1 { font-weight: 600; color: #111827; font-size: 2rem !important; }
-        h3 { font-weight: 500; color: #374151; font-size: 1.25rem !important; }
-        .executive-box { background-color: #F8FAFC; padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid #2563EB; margin-bottom: 1rem; }
+        h1 { font-weight: 600; font-size: 2rem !important; }
+        h3 { font-weight: 500; font-size: 1.25rem !important; }
     </style>
 """,
     unsafe_allow_html=True,
@@ -185,7 +184,7 @@ with aba3:
   np.random.seed(42)
   
   custo_serie_2025 = [110000 + np.random.uniform(-8000, 10000) for i in range(len(datas_historicas))]
-  custo_serie_2026 = [c * 1.08 for c in custo_serie_2025] # Inflação/Ajuste regulatório YoY
+  custo_serie_2026 = [c * 1.08 for c in custo_serie_2025] 
   
   df_temporal = pd.DataFrame({
       "Mês": [d.strftime("%b/%Y") for d in datas_historicas],
@@ -205,32 +204,38 @@ with aba3:
   st.plotly_chart(fig_temp, use_container_width=True)
 
 # ----------------------------------------------------------------------------
-# ABA 4: Relatório de Insights e Notas Executivas (Texto em Preto)
+# ABA 4: Relatório de Insights e Notas Executivas (Com Componentes Nativos)
 # ----------------------------------------------------------------------------
 with aba4:
   st.subheader("Relatório Executivo e Notas de Inteligência de Mercado")
   st.markdown("Análise detalhada, observações de portfólio e conclusões estratégicas baseadas na base de dados da Lux.")
 
-  st.markdown("""
-  <div class="executive-box">
-    <h3>1. Concentração de Consumo por Distribuidora</h3>
-    <p>A análise da carteira de 12 Unidades Consumidoras demonstra uma forte concentração na área de concessão da <b>Enel SP</b>, que lidera o volume total de consumo (ultrapassando 1.257 MWh no consolidado), seguida por CPFL Paulista, Light e Elektro. Essa concentração indica que negociações estratégicas de TUSD e prazos de migração devem priorizar o relacionamento com a Enel.</p>
-  </div>
-  """, unsafe_allow_html=True)
+  st.success("### 1. Concentração de Consumo por Distribuidora")
+  st.markdown(
+      "A análise da carteira de 12 Unidades Consumidoras demonstra uma forte concentração "
+      "na área de concessão da **Enel SP**, que lidera o volume total de consumo (ultrapassando 1.257 MWh "
+      "no consolidado), seguida por CPFL Paulista, Light e Elektro. Essa concentração indica que negociações "
+      "estratégicas de TUSD e prazos de migração devem priorizar o relacionamento com a Enel."
+  )
 
-  st.markdown("""
-  <div class="executive-box">
-    <h3>2. Priorização Comercial (Destaque para UC-1007 e UCs em Migração)</h3>
-    <p>A unidade <b>UC-1007</b> (Cond. Res. Alphaville / CPFL Paulista) destaca-se como a de maior consumo e faturamento individual da base, operando na modalidade Incentivada 50%. É o principal vetor de ganho financeiro imediato para abordagem comercial. Em paralelo, as unidades <b>UC-1011</b> e <b>UC-1012</b> encontram-se atualmente com status <i>'Em migração'</i>, exigindo monitoramento rigoroso para mitigar riscos regulatórios e assegurar a transição sem penalidades contratuais.</p>
-  </div>
-  """, unsafe_allow_html=True)
+  st.info("### 2. Priorização Comercial (Destaque para UC-1007 e UCs em Migração)")
+  st.markdown(
+      "A unidade **UC-1007** (Cond. Res. Alphaville / CPFL Paulista) destaca-se como a de maior consumo "
+      "e faturamento individual da base, operando na modalidade Incentivada 50%. É o principal vetor de "
+      "ganho financeiro imediato para abordagem comercial. Em paralelo, as unidades **UC-1011** e **UC-1012** "
+      "encontram-se atualmente com status *'Em migração'*, exigindo monitoramento rigoroso para mitigar riscos "
+      "regulatórios e assegurar a transição sem penalidades contratuais."
+  )
 
-  st.markdown("""
-  <div class="executive-box">
-    <h3>3. Comparativo Temporal e YoY (2025 vs. 2026)</h3>
-    <p>Ao avaliar o comportamento de custos entre o período passado (janeiro a outubro de 2025) e o ano corrente (2026), observa-se uma pressão inflacionária tarifária média de aproximadamente <b>+8%</b> no mercado cativo regulado. Em contrapartida, a projeção de migração para o Mercado Livre (ACL) demonstra um potencial de economia líquida superior a <b>25%</b> sobre a componente de energia, blindando o caixa da empresa contra a volatilidade das bandeiras tarifárias.</p>
-  </div>
-  """, unsafe_allow_html=True)
+  st.warning("### 3. Comparativo Temporal e YoY (2025 vs. 2026)")
+  st.markdown(
+      "Ao avaliar o comportamento de custos entre o período passado (janeiro a outubro de 2025) "
+      "e o ano corrente (2026), observa-se uma pressão inflacionária tarifária média de aproximadamente **+8%** "
+      "no mercado cativo regulado. Em contrapartida, a projeção de migração para o Mercado Livre (ACL) "
+      "demonstra um potencial de economia líquida superior a **25%** sobre a componente de energia, blindando "
+      "o caixa da empresa contra a volatilidade das bandeiras tarifárias."
+  )
+
 # ----------------------------------------------------------------------------
 # ABA 5: Documentação Técnica (README para o GitHub)
 # ----------------------------------------------------------------------------
@@ -241,7 +246,7 @@ with aba5:
 
   ### 🚀 Funcionalidades Principais:
   1. **Interatividade Avançada:** Gráficos responsivos com Plotly (tooltips de valores exatos, zoom e navegação temporal).
-  2. **Relatório Executivo Dedicado:** Aba específica com notas técnicas, insights de mercado e diretrizes de priorização de UCs.
+  2. **Relatório Executivo Dedicado:** Aba específica com componentes nativos legíveis, notas técnicas e insights de mercado.
   3. **Gestão por Unidade Consumidora (UC):** Filtragem dinâmica por distribuidora e status operacional.
   4. **Simulação de Risco de PLD e Comparativo YoY:** Análise de volatilidade spot e evolução interanual de custos.
   """)
