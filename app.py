@@ -75,7 +75,7 @@ custo_acl_mensal = [consumo_medio_mwh * 320] * 12
 df_grafico = pd.DataFrame(
     {
         "Mês": meses * 2,
-        "Custo (R$)": custo_captivo_ mensal + custo_acl_mensal,
+        "Custo (R$)": custo_captivo_mensal + custo_acl_mensal,
         "Mercado": ["Mercado Captivo"] * 12 + ["Mercado Livre (ACL)"] * 12,
     }
 )
