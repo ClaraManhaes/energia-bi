@@ -1,7 +1,7 @@
 import pandas as pd
 import streamlit as st
 
-# Configuração inicial da página (Layout limpo e profissional)
+# Configuração inicial da página
 st.set_page_config(
     page_title="Mercado Livre de Energia | Análise Econômica",
     page_icon="⚡",
@@ -11,7 +11,7 @@ st.set_page_config(
 # Título e Introdução
 st.title("⚡ Análise Comparativa: Mercado Captivo vs. Mercado Livre de Energia")
 st.markdown(
-    "Painel de inteligência de custos e viabilidade econômica para migração e gestão de portfólio no ACL."
+    "Painel de inteligência de custos e opções econômicas para migração e gestão de portfólio no ACL."
 )
 
 # ----------------------------------------------------------------------------
@@ -26,10 +26,9 @@ perfil_carga = st.sidebar.selectbox(
     "Perfil de Carga", ["Horus (Industrial / Contínuo)", "Comercial / Ponta"]
 )
 
-# Simulando dados básicos de economia
+# Indicadores de Viabilidade
 st.subheader("Indicadores de Viabilidade")
 
-# Métricas principais lado a lado
 col1, col2, col3 = st.columns(3)
 col1.metric(
     "Custo Atual (Captivo)",
@@ -50,7 +49,35 @@ col3.metric(
 
 st.divider()
 
-# Espaço reservado para os próximos gráficos comparativos
-st.info(
-    "💡 Dica: Este é o nosso ponto de partida. Na próxima etapa, vamos adicionar os gráficos de comparação de preços e simulação de PLD!"
+# ----------------------------------------------------------------------------
+# Passo 2: Adicionando Gráficos Comparativos
+# ------------------------------------------------------------
+st.subheader("📈 Projeção Anual de Custos: Captivo vs. Mercado Livre")
+
+# Dados simulados para os próximos meses
+meses = [
+    "Jan",
+    "Fev",
+    "Mar",
+    "Abr",
+    "Mai",
+    "Jun",
+    "Jul",
+    "Ago",
+    "Set",
+    "Out",
+    "Nov",
+    "Dez",
+]
+custo_captivo_ mensal = [consumo_medio_mwh * 450] * 12
+custo_acl_mensal = [consumo_medio_mwh * 320] * 12
+
+df_grafico = pd.DataFrame(
+    {
+        "Mês": meses * 2,
+        "Custo (R$)": custo_captivo_ mensal + custo_acl_mensal,
+        "Mercado": ["Mercado Captivo"] * 12 + ["Mercado Livre (ACL)"] * 12,
+    }
 )
+
+st.line_chart(df_grafico, x="Mês", y="Custo (R$)", color="Mercado")
