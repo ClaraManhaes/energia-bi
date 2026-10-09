@@ -13,4 +13,4 @@ Plataforma executiva interativa desenvolvida em **Python (Streamlit e Plotly)** 
 * **Streamlit** (Interface Web)
 * **Plotly** (Gráficos interativos)
 
-🌐 **Acesse a aplicação online:** [Link do Streamlit Cloud]
+🌐 **Acesse a aplicação online:**(https://energia-bi-ndfmlkai9uhkgnzvuaxwcs.streamlit.app/#monitoramento-diario-e-comparativo-year-over-year-yo-y)
