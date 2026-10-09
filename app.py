@@ -69,7 +69,7 @@ meses = [
     "Nov",
     "Dez",
 ]
-custo_captivo_ mensal = [consumo_medio_mwh * 450] * 12
+custo_captivo_mensal = [consumo_medio_mwh * 450] * 12
 custo_acl_mensal = [consumo_medio_mwh * 320] * 12
 
 df_grafico = pd.DataFrame(
